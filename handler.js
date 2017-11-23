@@ -1,5 +1,8 @@
 'use strict';
 const authorizer = require('./authorizer');
+const getCommits = require('./getCommits');
+const formatedMessage = require('./messageFormatter')
+const param = require('./getParams.js');
 
 module.exports.authorization = (event, context, callback) => {
   const code = event.queryStringParameters.code;
@@ -33,13 +36,23 @@ module.exports.authorization = (event, context, callback) => {
 };
 
 module.exports.git_statz = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'git statz was called!',
-      input: event,
-    }),
-  };
+  console.log('Github API called');
 
-  callback(null, response);
-};
+  let user = param.fromUri(event.body)
+  let url = 'https://github.com/' + user;
+
+  getCommits.scraper(url)
+    .then((data) => {
+      console.log('data from scraper received ');
+      const message = formatedMessage(data, user)
+
+      const response = {
+        statusCode: 200,
+        body: JSON.stringify(message),
+      };
+      callback(null, response);
+    })
+    .catch((error) => {
+      console.log('Error scraping data', error);
+    })
+}
