@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: git_statz # NOTE: update this with your service name
+service: git-statz # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -19,13 +19,13 @@ service: git_statz # NOTE: update this with your service name
 
 provider:
   name: aws
+  region: eu-west-1
   runtime: nodejs6.10
   profile: slack-app
 
 
 # you can overwrite defaults here
 #  stage: dev
-#  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
