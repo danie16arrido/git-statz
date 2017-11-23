@@ -22,6 +22,9 @@ provider:
   region: eu-west-1
   runtime: nodejs6.10
   profile: slack-app
+  environment:
+    SLACK_CLIENT_ID: ${file(./credentials.yml):id}
+    SLACK_CLIENT_SECRET: ${file(./credentials.yml):secret}
 
 
 # you can overwrite defaults here
