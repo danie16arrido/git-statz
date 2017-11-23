@@ -63,6 +63,12 @@ functions:
       - http:
           method: get
           path: slack/authorization
+  git_statz:
+    handler: handler.git_statz
+    events:
+      - http:
+          method: post
+          path: slack/git_statz
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
