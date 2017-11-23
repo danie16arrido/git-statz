@@ -1,4 +1,4 @@
-![git-statz](/gsgh.png.png)
+![git-statz](/gsgh.png)
 
 ## git-statz 
 
